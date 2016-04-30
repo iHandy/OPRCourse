@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxMutationType = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxCrossingPoint = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBoxCrossingTypeChooser = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.comboBoxPopulationChooser = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelChrL = new System.Windows.Forms.Label();
@@ -50,13 +57,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxCrossingTypeChooser = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBoxCrossingPoint = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboBoxMutationType = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +97,66 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parameters";
+            // 
+            // comboBoxMutationType
+            // 
+            this.comboBoxMutationType.Items.AddRange(new object[] {
+            "50/50"});
+            this.comboBoxMutationType.Location = new System.Drawing.Point(113, 209);
+            this.comboBoxMutationType.Name = "comboBoxMutationType";
+            this.comboBoxMutationType.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxMutationType.TabIndex = 16;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 212);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(74, 13);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "Mutation type:";
+            // 
+            // textBoxCrossingPoint
+            // 
+            this.textBoxCrossingPoint.Location = new System.Drawing.Point(113, 183);
+            this.textBoxCrossingPoint.Name = "textBoxCrossingPoint";
+            this.textBoxCrossingPoint.Size = new System.Drawing.Size(37, 20);
+            this.textBoxCrossingPoint.TabIndex = 15;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 186);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(76, 13);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Crossing point:";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(128, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(2, 30);
+            this.panel1.TabIndex = 25;
+            // 
+            // comboBoxCrossingTypeChooser
+            // 
+            this.comboBoxCrossingTypeChooser.Items.AddRange(new object[] {
+            "50/50"});
+            this.comboBoxCrossingTypeChooser.Location = new System.Drawing.Point(113, 156);
+            this.comboBoxCrossingTypeChooser.Name = "comboBoxCrossingTypeChooser";
+            this.comboBoxCrossingTypeChooser.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCrossingTypeChooser.TabIndex = 14;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 159);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Crossing type:";
             // 
             // comboBoxPopulationChooser
             // 
@@ -172,15 +232,15 @@
             // 
             // textBoxN
             // 
-            this.textBoxN.Location = new System.Drawing.Point(113, 103);
+            this.textBoxN.Location = new System.Drawing.Point(113, 78);
             this.textBoxN.Name = "textBoxN";
             this.textBoxN.Size = new System.Drawing.Size(37, 20);
-            this.textBoxN.TabIndex = 12;
+            this.textBoxN.TabIndex = 11;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 106);
+            this.label7.Location = new System.Drawing.Point(6, 81);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 13);
             this.label7.TabIndex = 13;
@@ -190,15 +250,16 @@
             // 
             this.comboBoxPopulationCreation.Items.AddRange(new object[] {
             "Random"});
-            this.comboBoxPopulationCreation.Location = new System.Drawing.Point(113, 78);
+            this.comboBoxPopulationCreation.Location = new System.Drawing.Point(113, 102);
             this.comboBoxPopulationCreation.Name = "comboBoxPopulationCreation";
             this.comboBoxPopulationCreation.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxPopulationCreation.TabIndex = 11;
+            this.comboBoxPopulationCreation.TabIndex = 12;
+            this.comboBoxPopulationCreation.Leave += new System.EventHandler(this.comboBoxPopulationCreation_Leave);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 81);
+            this.label6.Location = new System.Drawing.Point(6, 105);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 13);
             this.label6.TabIndex = 11;
@@ -275,66 +336,6 @@
             this.label2.Size = new System.Drawing.Size(118, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Parameters boundaries:";
-            // 
-            // comboBoxCrossingTypeChooser
-            // 
-            this.comboBoxCrossingTypeChooser.Items.AddRange(new object[] {
-            "50/50"});
-            this.comboBoxCrossingTypeChooser.Location = new System.Drawing.Point(113, 156);
-            this.comboBoxCrossingTypeChooser.Name = "comboBoxCrossingTypeChooser";
-            this.comboBoxCrossingTypeChooser.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCrossingTypeChooser.TabIndex = 14;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 159);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(73, 13);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "Crossing type:";
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(128, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2, 30);
-            this.panel1.TabIndex = 25;
-            // 
-            // textBoxCrossingPoint
-            // 
-            this.textBoxCrossingPoint.Location = new System.Drawing.Point(113, 183);
-            this.textBoxCrossingPoint.Name = "textBoxCrossingPoint";
-            this.textBoxCrossingPoint.Size = new System.Drawing.Size(37, 20);
-            this.textBoxCrossingPoint.TabIndex = 15;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 186);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(76, 13);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "Crossing point:";
-            // 
-            // comboBoxMutationType
-            // 
-            this.comboBoxMutationType.Items.AddRange(new object[] {
-            "50/50"});
-            this.comboBoxMutationType.Location = new System.Drawing.Point(113, 209);
-            this.comboBoxMutationType.Name = "comboBoxMutationType";
-            this.comboBoxMutationType.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxMutationType.TabIndex = 16;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 212);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(74, 13);
-            this.label13.TabIndex = 28;
-            this.label13.Text = "Mutation type:";
             // 
             // ParametersControl
             // 

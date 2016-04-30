@@ -26,6 +26,7 @@ namespace oprCourseSoloviev
 
             //Init population creation methods
             populationCreationMethods.Add(new PopulationCreationMethods.RandomMethod());
+            populationCreationMethods.Add(new PopulationCreationMethods.UserDefined());
             comboBoxPopulationCreation.DataSource = populationCreationMethods;
 
             populationChooseMethods.Add(new PopulationChooseMethods.RandomMethod());
@@ -160,6 +161,15 @@ namespace oprCourseSoloviev
             textBoxX2Left.BackColor = v ? Color.LightGreen : Color.IndianRed;
             textBoxX2Right.BackColor = v ? Color.LightGreen : Color.IndianRed;
             textBoxStepAccuracy.BackColor = v ? Color.LightGreen : Color.IndianRed;
+        }
+
+        private void comboBoxPopulationCreation_Leave(object sender, EventArgs e)
+        {
+            if (PopulationCreation is UserDefined)
+            {
+                FormUserDefinePoints form2 = new FormUserDefinePoints((UserDefined)PopulationCreation, N, ParamBoundaries);
+                form2.ShowDialog();
+            }
         }
     }
 
