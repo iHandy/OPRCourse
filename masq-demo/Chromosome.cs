@@ -111,7 +111,7 @@ namespace oprCourseSoloviev
             {
                 sbIntX1.Append(item.ToString());
             }
-            sbValue.Append(Convert.ToInt32(sbIntX1.ToString(), 2));
+            sbValue.Append(sbIntX1.Length > 0 ? Convert.ToInt32(sbIntX1.ToString(), 2) : 0);
 
             sbValue.Append(",");
 
@@ -120,7 +120,7 @@ namespace oprCourseSoloviev
             {
                 sbFracX1.Append(item.ToString());
             }
-            sbValue.Append(Convert.ToInt32(sbFracX1.ToString(), 2));
+            sbValue.Append(sbFracX1.Length > 0 ? Convert.ToInt32(sbFracX1.ToString(), 2) : 0);
 
             string valueS = sbValue.ToString();
             return float.Parse(valueS);
@@ -136,7 +136,7 @@ namespace oprCourseSoloviev
                 sbIntX2.Append(item.ToString());
 
             }
-            sbValue.Append(Convert.ToInt32(sbIntX2.ToString(), 2));
+            sbValue.Append(sbIntX2.Length > 0 ? Convert.ToInt32(sbIntX2.ToString(), 2) : 0);
 
             sbValue.Append(",");
 
@@ -146,7 +146,7 @@ namespace oprCourseSoloviev
                 sbFracX2.Append(item.ToString());
 
             }
-            sbValue.Append(Convert.ToInt32(sbFracX2.ToString(), 2));
+            sbValue.Append(sbFracX2.Length > 0 ? Convert.ToInt32(sbFracX2.ToString(), 2) : 0);
 
             string valueS = sbValue.ToString();
             return float.Parse(valueS);
