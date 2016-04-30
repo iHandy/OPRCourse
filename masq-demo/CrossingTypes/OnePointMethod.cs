@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace demo.CrossingTypes
+namespace oprCourseSoloviev.CrossingTypes
 {
     public class OnePointMethod : ICrossingType
     {
@@ -17,7 +17,7 @@ namespace demo.CrossingTypes
             return getName();
         }
 
-        public List<Person> getCrossedChilds(demo.VEGA.Parents parents, int[] crossingPoints, int generation, ref int lastId)
+        public List<Person> getCrossedChilds(oprCourseSoloviev.VEGA.Parents parents, int[] crossingPoints, int generation, ref int lastId)
         {
             List<Person> childs = new List<Person>(2);
             int crossingPoint = crossingPoints[0];

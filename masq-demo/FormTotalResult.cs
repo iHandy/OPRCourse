@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace demo
+namespace oprCourseSoloviev
 {
     public partial class FormTotalResult : Form
     {

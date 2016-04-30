@@ -10,7 +10,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
 using NCalc;
 
-namespace demo
+namespace oprCourseSoloviev
 {
     public partial class Form1 : Form
     {

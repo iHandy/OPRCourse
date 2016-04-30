@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace demo
+namespace oprCourseSoloviev
 {
     public class MutationProcessor
     {
         Random random = new Random();
 
-        public List<Person> getMutationChilds(demo.VEGA.Parents parents, float mutationFactor, int generation, ref int lastId)
+        public List<Person> getMutationChilds(oprCourseSoloviev.VEGA.Parents parents, float mutationFactor, int generation, ref int lastId)
         {
             List<Person> childs = new List<Person>(2);
 

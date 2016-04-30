@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "masq-demo", "masq-demo\masq-demo.csproj", "{5E911A28-7B97-43B2-8A3E-E39A0CA00782}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPRCourse", "masq-demo\OPRCourse.csproj", "{5E911A28-7B97-43B2-8A3E-E39A0CA00782}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

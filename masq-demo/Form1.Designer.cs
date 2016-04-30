@@ -1,4 +1,4 @@
-﻿namespace demo
+﻿namespace oprCourseSoloviev
 {
     partial class Form1
     {
@@ -42,9 +42,9 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.parametersControl1 = new demo.ParametersControl();
-            this.functionControl2 = new demo.FunctionControl();
-            this.functionControl1 = new demo.FunctionControl();
+            this.parametersControl1 = new oprCourseSoloviev.ParametersControl();
+            this.functionControl2 = new oprCourseSoloviev.FunctionControl();
+            this.functionControl1 = new oprCourseSoloviev.FunctionControl();
             this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();

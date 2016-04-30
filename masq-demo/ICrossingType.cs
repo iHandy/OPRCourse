@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace demo
+namespace oprCourseSoloviev
 {
     public interface ICrossingType
     {
         string getName();
 
-        List<Person> getCrossedChilds(demo.VEGA.Parents parents, int[] crossingPoints, int generation, ref int lastId);
+        List<Person> getCrossedChilds(oprCourseSoloviev.VEGA.Parents parents, int[] crossingPoints, int generation, ref int lastId);
     }
 }

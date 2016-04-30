@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace demo.PopulationChooseMethods
+namespace oprCourseSoloviev.PopulationChooseMethods
 {
     class RandomMethod : IPopulationChooser
     {

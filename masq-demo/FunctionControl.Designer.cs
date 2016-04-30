@@ -1,4 +1,4 @@
-﻿namespace demo
+﻿namespace oprCourseSoloviev
 {
     partial class FunctionControl
     {

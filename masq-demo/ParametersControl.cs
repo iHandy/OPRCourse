@@ -8,10 +8,10 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 
-using demo.PopulationCreationMethods;
-using demo.PopulationChooseMethods;
+using oprCourseSoloviev.PopulationCreationMethods;
+using oprCourseSoloviev.PopulationChooseMethods;
 
-namespace demo
+namespace oprCourseSoloviev
 {
     public partial class ParametersControl : UserControl
     {

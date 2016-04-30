@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using NCalc;
 
-namespace demo
+namespace oprCourseSoloviev
 {
     public enum FUNCTION_NUMBER { FIRST=1, SECOND=2 }
 
