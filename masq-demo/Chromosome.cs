@@ -18,9 +18,9 @@ namespace oprCourseSoloviev
 
         public Chromosome(int x1IntCount, int x1FracCount, int x2IntCount, int x2FracCount, float x1, float x2)
         {
-            integerPart1 = new int[x1IntCount/*+1*/];
+            integerPart1 = new int[x1IntCount];
             fractionalPart1 = new int[x1FracCount];
-            integerPart2 = new int[x2IntCount + 1];
+            integerPart2 = new int[x2IntCount];
             fractionalPart2 = new int[x2FracCount];
 
             string[] x1s = x1.ToString().Split(splitter);
@@ -110,7 +110,6 @@ namespace oprCourseSoloviev
             foreach (var item in integerPart1)
             {
                 sbIntX1.Append(item.ToString());
-
             }
             sbValue.Append(Convert.ToInt32(sbIntX1.ToString(), 2));
 
@@ -120,7 +119,6 @@ namespace oprCourseSoloviev
             foreach (var item in fractionalPart1)
             {
                 sbFracX1.Append(item.ToString());
-
             }
             sbValue.Append(Convert.ToInt32(sbFracX1.ToString(), 2));
 
