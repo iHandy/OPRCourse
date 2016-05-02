@@ -27,7 +27,7 @@ namespace oprCourseSoloviev.PopulationChooseMethods
 
             foreach (var item in nativePopulation)
             {
-                functionsSum += item.FuncionCommonValue;
+                functionsSum += Math.Abs(item.FuncionCommonValue);
             }
 
             double oneDeg = functionsSum <= 360 ? 360 / functionsSum : 1;
@@ -41,7 +41,7 @@ namespace oprCourseSoloviev.PopulationChooseMethods
                 double angleSum = 0;
                 foreach (var item in nativePopulation)
                 {
-                    angleSum += item.FuncionCommonValue * oneDeg / oneVal;
+                    angleSum += Math.Abs(item.FuncionCommonValue) * oneDeg / oneVal;
 
                     if (angleSum > 361)
                     {
