@@ -85,6 +85,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="PersonAsPoint.cs" />
     <Compile Include="PopulationChooseMethods\RandomMethod.cs" />
+    <Compile Include="PopulationChooseMethods\RouletteWheelMethod.cs" />
     <Compile Include="PopulationCreationMethods\RandomMethod.cs" />
     <Compile Include="PopulationCreationMethods\UserDefined.cs" />
     <Compile Include="Program.cs" />

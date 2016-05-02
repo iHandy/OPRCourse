@@ -54,13 +54,22 @@ namespace oprCourseSoloviev
                 }
                 else
                 {
+                    //mixing
                     startPopulation = new List<Person>(currentPopulation);
                     startPopulation = startPopulation.OrderBy(x => rnd.Next()).ToList();
                 }
 
+                foreach (var item in startPopulation)
+                {
+                    if (item.FuncionCommonValue == 0)
+                    {
+                        calculateFunctions(item);
+                    }
+                }
+
                 //Divide population by Function groups
                 IPopulationChooser populationChooser = p.PopulationChooser;
-                List<Person> nextPopulation = populationChooser.getPopulationForFunctions(startPopulation, generation);
+                List<Person> nextPopulation = populationChooser.getPopulationForFunctions(startPopulation, generation, p.N);
 
                 if (nextPopulation.Count == 0)
                 {

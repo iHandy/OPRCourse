@@ -30,6 +30,7 @@ namespace oprCourseSoloviev
             comboBoxPopulationCreation.DataSource = populationCreationMethods;
 
             populationChooseMethods.Add(new PopulationChooseMethods.RandomMethod());
+            populationChooseMethods.Add(new PopulationChooseMethods.RouletteWheelMethod());
             comboBoxPopulationChooser.DataSource = populationChooseMethods;
 
             crossingTypes.Add(new CrossingTypes.OnePointMethod());

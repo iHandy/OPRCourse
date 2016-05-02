@@ -9,6 +9,6 @@ namespace oprCourseSoloviev
     {
         string getName();
 
-        List<Person> getPopulationForFunctions(List<Person> nativePopulation, int generation);
+        List<Person> getPopulationForFunctions(List<Person> nativePopulation, int generation, int N);
     }
 }

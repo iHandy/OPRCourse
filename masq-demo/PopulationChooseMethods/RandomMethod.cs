@@ -17,13 +17,13 @@ namespace oprCourseSoloviev.PopulationChooseMethods
             return getName();
         }
 
-        public List<Person> getPopulationForFunctions(List<Person> nativePopulation, int generation)
+        public List<Person> getPopulationForFunctions(List<Person> nativePopulation, int generation, int N)
         {
             List<Person> nextPopulation = new List<Person>();
-            int count = nativePopulation.Count;
-            int half = count / 2;
+            //int count = nativePopulation.Count;
+            int half = N / 2;
             //List<Person> toRemove = new List<Person>();
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < N; i++)
             {
                 if (nativePopulation[i].isRemoved)
                 {

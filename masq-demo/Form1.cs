@@ -515,6 +515,9 @@ namespace oprCourseSoloviev
                     item.Funcion1Value.ToString(),
                     item.Funcion2Value.ToString(),
                     item.FuncionCommonValue.ToString()});
+
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[item.FunctionNumber.Equals(FUNCTION_NUMBER.FIRST) ? 5 : 4].Style.ForeColor = Color.Gray;
+
                 if (item.isRemoved/*x1 > parametersControl1.ParamBoundaries.X1Right || x1 < parametersControl1.ParamBoundaries.X1Left
                     || x2 > parametersControl1.ParamBoundaries.X2Right || x2 < parametersControl1.ParamBoundaries.X2Left*/)
                 {
