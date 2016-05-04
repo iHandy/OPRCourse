@@ -14,6 +14,7 @@ namespace oprCourseSoloviev
             this.ID = id;
             this.Chromosome = chromosome;
             this.Type = PersonType.NORMAL;
+            this.FuncionCommonValue = 0;
         }
 
         public Person(int generation, int id, Chromosome chromosome, FUNCTION_NUMBER functionNumber)
@@ -23,6 +24,7 @@ namespace oprCourseSoloviev
             this.Chromosome = chromosome;
             this.FunctionNumber = functionNumber;
             this.Type = PersonType.NORMAL;
+            this.FuncionCommonValue = 0;
         }
 
         public Person()

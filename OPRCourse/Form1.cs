@@ -483,6 +483,7 @@ namespace oprCourseSoloviev
             sc.Color = Color.Green;
 
             int bestI = -1;
+            int bestGen = -1;
             double bestValue = double.MinValue;
 
             List<int> pointsId = new List<int>();
@@ -504,6 +505,7 @@ namespace oprCourseSoloviev
                 {
                     bestValue = item.FuncionCommonValue;
                     bestI = i;
+                    bestGen = item.Generation;
                 }
                 i++;
 
@@ -516,7 +518,8 @@ namespace oprCourseSoloviev
                     item.Funcion2Value.ToString(),
                     item.FuncionCommonValue.ToString()});
 
-                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[item.FunctionNumber.Equals(FUNCTION_NUMBER.FIRST) ? 5 : 4].Style.ForeColor = Color.Gray;
+                
+                
 
                 if (item.isRemoved/*x1 > parametersControl1.ParamBoundaries.X1Right || x1 < parametersControl1.ParamBoundaries.X1Left
                     || x2 > parametersControl1.ParamBoundaries.X2Right || x2 < parametersControl1.ParamBoundaries.X2Left*/)
@@ -539,6 +542,8 @@ namespace oprCourseSoloviev
                 if (vega.selectedId.Contains(id))
                 {
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Olive;
+
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[item.FunctionNumber.Equals(FUNCTION_NUMBER.FIRST) ? 5 : 4].Style.ForeColor = Color.Gray;
                 }
                 else if (vega.crossedId.Contains(id))
                 {
@@ -547,6 +552,10 @@ namespace oprCourseSoloviev
                 else if (vega.mutatedId.Contains(id))
                 {
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Violet;
+                }
+                else
+                {
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[item.FunctionNumber.Equals(FUNCTION_NUMBER.FIRST) ? 5 : 4].Style.ForeColor = Color.Gray;
                 }
 
                 if (!pointsId.Contains(item.ID))
@@ -574,7 +583,7 @@ namespace oprCourseSoloviev
                     parametersControl1.CrossingPoint.ToString(),
                     parametersControl1.MutationType.ToString(),
                     parametersControl1.Mu.ToString(),
-                    vega.getGenerations().ToString()});
+                    bestGen.ToString()});
 
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NCalc;
+using System.Diagnostics;
 
 namespace oprCourseSoloviev
 {
@@ -45,31 +46,34 @@ namespace oprCourseSoloviev
             for (int i = 0; i < p.EOCC; i++)
             {
                 generation++;
+                Debug.WriteLine("=================== GENERATION " + generation + " ===================");
 
                 //Generation start N population
                 if (i == 0)
                 {
                     IPopulationCreation populationCreator = p.PopulationCreation;
                     startPopulation = getPopulationFromPoints(populationCreator.getPopulation(p.N, p.ParamBoundaries));
+                    Debug.WriteLine("i == 0. StartPopulation count = " + startPopulation.Count);
                 }
                 else
                 {
                     //mixing
                     startPopulation = new List<Person>(currentPopulation);
                     startPopulation = startPopulation.OrderBy(x => rnd.Next()).ToList();
+
+                    Debug.WriteLine("Mixing. StartPopulation count = " + startPopulation.Count);
                 }
 
                 foreach (var item in startPopulation)
                 {
-                    if (item.FuncionCommonValue == 0)
-                    {
-                        calculateFunctions(item);
-                    }
+                    calculateFunctions(item);
                 }
 
-                //Divide population by Function groups
+                //Divide population by Function groups (Choose/select)
                 IPopulationChooser populationChooser = p.PopulationChooser;
                 List<Person> nextPopulation = populationChooser.getPopulationForFunctions(startPopulation, generation, p.N);
+
+                Debug.WriteLine("Next population count = " + nextPopulation.Count);
 
                 if (nextPopulation.Count == 0)
                 {
@@ -79,7 +83,7 @@ namespace oprCourseSoloviev
                 currentPopulation.AddRange(nextPopulation);
 
                 //Calculate F1 and F2 values, find best in F1 and best in F2.
-                BestResult br = calculateFunctionAndFindBest();
+                BestResult br = calculateFunctionAndFindBest(nextPopulation);
 
                 if (br.f1ID == -1 || br.f2ID == -1)
                 {
@@ -87,7 +91,7 @@ namespace oprCourseSoloviev
                 }
 
                 //Generate parents pairs
-                Parents parents = generateParents(br);
+                Parents parents = generateParents(br, nextPopulation);
                 selectedId.Add(parents.parent1.Generation + "." + parents.parent1.ID);
                 selectedId.Add(parents.parent2.Generation + "." + parents.parent2.ID);
 
@@ -136,11 +140,11 @@ namespace oprCourseSoloviev
             return resultList;
         }
 
-        private BestResult calculateFunctionAndFindBest()
+        private BestResult calculateFunctionAndFindBest(List<Person> population)
         {
             int bestIDF1 = -1, bestIDF2 = -1;
             double yBest1 = (double.MinValue + 1), yBest2 = (double.MinValue + 1);
-            foreach (var item in currentPopulation)
+            foreach (var item in population)
             {
                 float x1 = item.Chromosome.getNormalValueX1();
                 float x2 = item.Chromosome.getNormalValueX2();
@@ -189,27 +193,31 @@ namespace oprCourseSoloviev
             return br;
         }
 
-        private Parents generateParents(BestResult br)
+        private Parents generateParents(BestResult br, List<Person> population)
         {
             Person parent1 = null;
             Person parent2 = null;
-            foreach (var item in currentPopulation)
+            foreach (var item in population)
             {
                 if (item.ID == br.f1ID)
                 {
                     item.Type = PersonType.SELECTED;
                     parent1 = item;// new Person(generation, ++lastPersonId, item.Chromosome, item.FunctionNumber);
                 }
-                else if (item.ID == br.f2ID)
+                /*else */if (item.ID == br.f2ID)
                 {
                     item.Type = PersonType.SELECTED;
                     parent2 = item;// new Person(generation, ++lastPersonId, item.Chromosome, item.FunctionNumber);
                 }
             }
+            
             if (parent1 == null || parent2 == null)
             {
                 throw new SystemException("Parents is NULL!");
             }
+
+            Debug.WriteLine("parent1 id = " + parent1.ID + "; parent2 id = " + parent2.ID);
+
             parent1 = calculateFunctions(parent1);
             parent2 = calculateFunctions(parent2);
             //currentPopulation.Add(parent1);
@@ -222,20 +230,23 @@ namespace oprCourseSoloviev
 
         private Person calculateFunctions(Person p)
         {
-            evaluateParams(f1.Function, p.Chromosome.getNormalValueX1(), p.Chromosome.getNormalValueX2());
-            p.Funcion1Value = (double)f1.Function.Evaluate();
-
-            evaluateParams(f2.Function, p.Chromosome.getNormalValueX1(), p.Chromosome.getNormalValueX2());
-            p.Funcion2Value = (double)f2.Function.Evaluate();
-
-            p.FuncionCommonValue = p.Funcion1Value * 0.5 + p.Funcion2Value * 0.5;
-
-            float x1 = p.Chromosome.getNormalValueX1();
-            float x2 = p.Chromosome.getNormalValueX2();
-            if (x1 > this.p.ParamBoundaries.X1Right || x1 < this.p.ParamBoundaries.X1Left
-                   || x2 > this.p.ParamBoundaries.X2Right || x2 < this.p.ParamBoundaries.X2Left)
+            if (p.FuncionCommonValue == 0)
             {
-                p.isRemoved = true;
+                evaluateParams(f1.Function, p.Chromosome.getNormalValueX1(), p.Chromosome.getNormalValueX2());
+                p.Funcion1Value = (double)f1.Function.Evaluate();
+
+                evaluateParams(f2.Function, p.Chromosome.getNormalValueX1(), p.Chromosome.getNormalValueX2());
+                p.Funcion2Value = (double)f2.Function.Evaluate();
+
+                p.FuncionCommonValue = p.Funcion1Value * 0.5 + p.Funcion2Value * 0.5;
+
+                float x1 = p.Chromosome.getNormalValueX1();
+                float x2 = p.Chromosome.getNormalValueX2();
+                if (x1 > this.p.ParamBoundaries.X1Right || x1 < this.p.ParamBoundaries.X1Left
+                       || x2 > this.p.ParamBoundaries.X2Right || x2 < this.p.ParamBoundaries.X2Left)
+                {
+                    p.isRemoved = true;
+                }
             }
 
             return p;
