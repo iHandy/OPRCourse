@@ -97,7 +97,7 @@ namespace oprCourseSoloviev
 
                 //Do crossing
                 ICrossingType crossingType = p.CrossingType;
-                currentPopulation.AddRange(crossingType.getCrossedChilds(parents, new int[] { p.CrossingPoint }, generation, ref lastPersonId));
+                currentPopulation.AddRange(crossingType.getCrossedChilds(parents, p.CrossingPoint, generation, ref lastPersonId));
                 calculateFunctions(currentPopulation[currentPopulation.Count - 2]);
                 calculateFunctions(currentPopulation[currentPopulation.Count - 1]);
                 crossedId.Add(currentPopulation[currentPopulation.Count - 2].Generation + "." + currentPopulation[currentPopulation.Count - 2].ID);
@@ -111,7 +111,10 @@ namespace oprCourseSoloviev
                         currentPopulation.AddRange(mp.getMutationChilds(parents, p.Mu, generation, ref lastPersonId));
                         break;
                     case MutationTypes.CHILD:
-                        currentPopulation.AddRange(mp.getMutationChilds(parents, p.Mu, generation, ref lastPersonId));
+                        Parents childs = new Parents();
+                        childs.parent1 = currentPopulation[currentPopulation.Count - 2];
+                        childs.parent2 = currentPopulation[currentPopulation.Count - 1];
+                        currentPopulation.AddRange(mp.getMutationChilds(childs, p.Mu, generation, ref lastPersonId));
                         break;
                 }
                 calculateFunctions(currentPopulation[currentPopulation.Count - 2]);
@@ -204,13 +207,14 @@ namespace oprCourseSoloviev
                     item.Type = PersonType.SELECTED;
                     parent1 = item;// new Person(generation, ++lastPersonId, item.Chromosome, item.FunctionNumber);
                 }
-                /*else */if (item.ID == br.f2ID)
+                /*else */
+                if (item.ID == br.f2ID)
                 {
                     item.Type = PersonType.SELECTED;
                     parent2 = item;// new Person(generation, ++lastPersonId, item.Chromosome, item.FunctionNumber);
                 }
             }
-            
+
             if (parent1 == null || parent2 == null)
             {
                 throw new SystemException("Parents is NULL!");

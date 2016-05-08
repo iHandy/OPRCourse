@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Chromosome.cs" />
     <Compile Include="CrossingTypes\OnePointMethod.cs" />
+    <Compile Include="CrossingTypes\TwoPointMethod.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +87,7 @@
     <Compile Include="PersonAsPoint.cs" />
     <Compile Include="PopulationChooseMethods\RandomMethod.cs" />
     <Compile Include="PopulationChooseMethods\RouletteWheelMethod.cs" />
+    <Compile Include="PopulationChooseMethods\RouletteWheelMethodWithoutDupl.cs" />
     <Compile Include="PopulationCreationMethods\RandomMethod.cs" />
     <Compile Include="PopulationCreationMethods\UserDefined.cs" />
     <Compile Include="Program.cs" />

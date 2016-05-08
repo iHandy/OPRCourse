@@ -31,9 +31,11 @@ namespace oprCourseSoloviev
 
             populationChooseMethods.Add(new PopulationChooseMethods.RandomMethod());
             populationChooseMethods.Add(new PopulationChooseMethods.RouletteWheelMethod());
+            populationChooseMethods.Add(new PopulationChooseMethods.RouletteWheelMethodWithoutDupl());
             comboBoxPopulationChooser.DataSource = populationChooseMethods;
 
             crossingTypes.Add(new CrossingTypes.OnePointMethod());
+            crossingTypes.Add(new CrossingTypes.TwoPointMethod());
             comboBoxCrossingTypeChooser.DataSource = crossingTypes;
 
             mutationTypes.Add(MutationTypes.PARENT);
@@ -57,10 +59,24 @@ namespace oprCourseSoloviev
         public IPopulationChooser PopulationChooser { get { return populationChooseMethods[comboBoxPopulationChooser.SelectedIndex]; } }
 
         public ICrossingType CrossingType { get { return crossingTypes[comboBoxCrossingTypeChooser.SelectedIndex]; } }
-        public int CrossingPoint { get { return textBoxCrossingPoint.TextLength > 0 ? int.Parse(textBoxCrossingPoint.Text) : 0; } }
+        public int[] CrossingPoint { get { return textBoxCrossingPoint.TextLength > 0 ? parseCrossingPoint() : new int[] { 0 }; } }
 
         public MutationTypes MutationType { get { return mutationTypes[comboBoxMutationType.SelectedIndex]; } }
         public float Mu { get { return textBoxMu.TextLength > 0 ? float.Parse(textBoxMu.Text) : 0; } }
+
+        private int[] parseCrossingPoint()
+        {
+            string[] s = textBoxCrossingPoint.Text.Split(splitter);
+            int[] result = new int[s.Length];
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!int.TryParse(s[i], out result[i]))
+                {
+                    result[i] = 0;
+                }
+            }
+            return result;
+        }
 
         private void textBoxStepAccuracy_Leave(object sender, EventArgs e)
         {

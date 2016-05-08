@@ -5,7 +5,7 @@ using System.Text;
 
 namespace oprCourseSoloviev.PopulationChooseMethods
 {
-    class RouletteWheelMethod : IPopulationChooser
+    class RouletteWheelMethodWithoutDupl : IPopulationChooser
     {
         Random mRandomizer = new Random();
 
@@ -16,18 +16,19 @@ namespace oprCourseSoloviev.PopulationChooseMethods
 
         public string getName()
         {
-            return "Roulette";
+            return "Roulette w/o duplicates";
         }
 
         public List<Person> getPopulationForFunctions(List<Person> nativePopulation, int generation, int N)
         {
             List<Person> nextPopulation = new List<Person>();
+            List<int> selectedIds = new List<int>(N);
 
             double functionsSum = 0;
 
             foreach (var item in nativePopulation)
             {
-                if (!item.isRemoved)
+                if (!item.isRemoved && !selectedIds.Contains(item.ID))
                 {
                     functionsSum += Math.Abs(item.FuncionCommonValue);
                 }
@@ -44,7 +45,7 @@ namespace oprCourseSoloviev.PopulationChooseMethods
                 double angleSum = 0;
                 foreach (var item in nativePopulation)
                 {
-                    if (!item.isRemoved)
+                    if (!item.isRemoved && !selectedIds.Contains(item.ID))
                     {
                         angleSum += Math.Abs(item.FuncionCommonValue) * oneDeg / oneVal;
 
@@ -57,6 +58,7 @@ namespace oprCourseSoloviev.PopulationChooseMethods
                         {
                             Person newPerson = new Person(generation, item.ID, item.Chromosome, even ? FUNCTION_NUMBER.FIRST : FUNCTION_NUMBER.SECOND);
                             nextPopulation.Add(newPerson);
+                            selectedIds.Add(newPerson.ID);
                             break;
                         }
                     }
