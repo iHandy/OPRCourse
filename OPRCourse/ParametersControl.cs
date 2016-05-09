@@ -32,6 +32,7 @@ namespace oprCourseSoloviev
             populationChooseMethods.Add(new PopulationChooseMethods.RandomMethod());
             populationChooseMethods.Add(new PopulationChooseMethods.RouletteWheelMethod());
             populationChooseMethods.Add(new PopulationChooseMethods.RouletteWheelMethodWithoutDupl());
+            populationChooseMethods.Add(new PopulationChooseMethods.TournamentMethod());
             comboBoxPopulationChooser.DataSource = populationChooseMethods;
 
             crossingTypes.Add(new CrossingTypes.OnePointMethod());
@@ -185,6 +186,15 @@ namespace oprCourseSoloviev
             if (PopulationCreation is UserDefined)
             {
                 FormUserDefinePoints form2 = new FormUserDefinePoints((UserDefined)PopulationCreation, N, ParamBoundaries);
+                form2.ShowDialog();
+            }
+        }
+
+        private void comboBoxPopulationChooser_Leave(object sender, EventArgs e)
+        {
+            if (PopulationChooser is TournamentMethod)
+            {
+                FormTournamentSettings form2 = new FormTournamentSettings((TournamentMethod)PopulationChooser);
                 form2.ShowDialog();
             }
         }

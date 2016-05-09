@@ -65,6 +65,12 @@
     <Compile Include="FormTotalResult.Designer.cs">
       <DependentUpon>FormTotalResult.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTournamentSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTournamentSettings.Designer.cs">
+      <DependentUpon>FormTournamentSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUserDefinePoints.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,7 @@
     <Compile Include="PopulationChooseMethods\RandomMethod.cs" />
     <Compile Include="PopulationChooseMethods\RouletteWheelMethod.cs" />
     <Compile Include="PopulationChooseMethods\RouletteWheelMethodWithoutDupl.cs" />
+    <Compile Include="PopulationChooseMethods\TournamentMethod.cs" />
     <Compile Include="PopulationCreationMethods\RandomMethod.cs" />
     <Compile Include="PopulationCreationMethods\UserDefined.cs" />
     <Compile Include="Program.cs" />
@@ -104,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTotalResult.resx">
       <DependentUpon>FormTotalResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTournamentSettings.resx">
+      <DependentUpon>FormTournamentSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserDefinePoints.resx">
       <DependentUpon>FormUserDefinePoints.cs</DependentUpon>

@@ -166,6 +166,7 @@
             this.comboBoxPopulationChooser.Name = "comboBoxPopulationChooser";
             this.comboBoxPopulationChooser.Size = new System.Drawing.Size(121, 21);
             this.comboBoxPopulationChooser.TabIndex = 13;
+            this.comboBoxPopulationChooser.Leave += new System.EventHandler(this.comboBoxPopulationChooser_Leave);
             // 
             // label1
             // 
