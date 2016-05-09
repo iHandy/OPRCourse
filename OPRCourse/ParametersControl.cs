@@ -33,6 +33,7 @@ namespace oprCourseSoloviev
             populationChooseMethods.Add(new PopulationChooseMethods.RouletteWheelMethod());
             populationChooseMethods.Add(new PopulationChooseMethods.RouletteWheelMethodWithoutDupl());
             populationChooseMethods.Add(new PopulationChooseMethods.TournamentMethod());
+            populationChooseMethods.Add(new PopulationChooseMethods.RankMethod());
             comboBoxPopulationChooser.DataSource = populationChooseMethods;
 
             crossingTypes.Add(new CrossingTypes.OnePointMethod());
@@ -194,7 +195,12 @@ namespace oprCourseSoloviev
         {
             if (PopulationChooser is TournamentMethod)
             {
-                FormTournamentSettings form2 = new FormTournamentSettings((TournamentMethod)PopulationChooser);
+                FormTournamentSetup form2 = new FormTournamentSetup((TournamentMethod)PopulationChooser);
+                form2.ShowDialog();
+            }
+            else if (PopulationChooser is RankMethod)
+            {
+                FormRankSetup form2 = new FormRankSetup((RankMethod)PopulationChooser);
                 form2.ShowDialog();
             }
         }

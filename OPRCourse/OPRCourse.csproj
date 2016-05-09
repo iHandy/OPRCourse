@@ -59,17 +59,23 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRankSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRankSetup.Designer.cs">
+      <DependentUpon>FormRankSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTotalResult.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormTotalResult.Designer.cs">
       <DependentUpon>FormTotalResult.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTournamentSettings.cs">
+    <Compile Include="FormTournamentSetup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTournamentSettings.Designer.cs">
-      <DependentUpon>FormTournamentSettings.cs</DependentUpon>
+    <Compile Include="FormTournamentSetup.Designer.cs">
+      <DependentUpon>FormTournamentSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="FormUserDefinePoints.cs">
       <SubType>Form</SubType>
@@ -92,6 +98,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="PersonAsPoint.cs" />
     <Compile Include="PopulationChooseMethods\RandomMethod.cs" />
+    <Compile Include="PopulationChooseMethods\RankMethod.cs" />
     <Compile Include="PopulationChooseMethods\RouletteWheelMethod.cs" />
     <Compile Include="PopulationChooseMethods\RouletteWheelMethodWithoutDupl.cs" />
     <Compile Include="PopulationChooseMethods\TournamentMethod.cs" />
@@ -109,11 +116,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRankSetup.resx">
+      <DependentUpon>FormRankSetup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTotalResult.resx">
       <DependentUpon>FormTotalResult.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTournamentSettings.resx">
-      <DependentUpon>FormTournamentSettings.cs</DependentUpon>
+    <EmbeddedResource Include="FormTournamentSetup.resx">
+      <DependentUpon>FormTournamentSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserDefinePoints.resx">
       <DependentUpon>FormUserDefinePoints.cs</DependentUpon>

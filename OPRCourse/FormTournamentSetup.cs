@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace oprCourseSoloviev
 {
-    public partial class FormTournamentSettings : Form
+    public partial class FormTournamentSetup : Form
     {
         private PopulationChooseMethods.TournamentMethod tournamentMethod;
 
-        public FormTournamentSettings(PopulationChooseMethods.TournamentMethod tournamentMethod)
+        public FormTournamentSetup(PopulationChooseMethods.TournamentMethod tournamentMethod)
         {
             this.tournamentMethod = tournamentMethod;
 

@@ -1,6 +1,6 @@
 ﻿namespace oprCourseSoloviev
 {
-    partial class FormTournamentSettings
+    partial class FormTournamentSetup
     {
         /// <summary>
         /// Required designer variable.
