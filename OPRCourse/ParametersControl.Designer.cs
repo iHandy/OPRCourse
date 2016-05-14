@@ -360,7 +360,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxN;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBoxPopulationCreation;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxStepAccuracy;
         private System.Windows.Forms.Label label5;
@@ -373,14 +372,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelChrL;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBoxPopulationChooser;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxCrossingPoint;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox comboBoxCrossingTypeChooser;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBoxMutationType;
         private System.Windows.Forms.Label label13;
+        public System.Windows.Forms.ComboBox comboBoxPopulationCreation;
+        public System.Windows.Forms.ComboBox comboBoxPopulationChooser;
+        public System.Windows.Forms.ComboBox comboBoxCrossingTypeChooser;
+        public System.Windows.Forms.ComboBox comboBoxMutationType;
     }
 }
