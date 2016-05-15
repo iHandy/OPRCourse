@@ -25,86 +25,24 @@ namespace oprCourseSoloviev.PopulationChooseMethods
             List<int> selectedIds = new List<int>(N);
             int half = N / 2;
 
-            /*List<List<Person>> workList = new List<List<Person>>();
+            nativePopulation.Sort(new FuncComparer());
 
-            if (SubWay == 1)//range
+            for (int i = 0; i < RankList.Count; i++)
             {
-                nativePopulation.Sort(new FuncComparer());
-            }
+                int copies = RankList[i] / N;
 
-            List<Person> groupList = new List<Person>(IndividN);
-            List<Person> groupListEven = new List<Person>(IndividN);
-            int i = 0;
-            foreach (var item in nativePopulation)
-            {
-                if (groupList.Count >= IndividN)
+                for (int j = 0; j < copies; j++)
                 {
-                    workList.Add(groupList);
-                    groupList = new List<Person>(IndividN);
-                }
-                if (groupListEven.Count >= IndividN)
-                {
-                    workList.Add(groupListEven);
-                    groupListEven = new List<Person>(IndividN);
-                }
-
-                if (!item.isRemoved)
-                {
-                    switch (SubWay)
+                    if (!nativePopulation[i].isRemoved)
                     {
-                        case 0: //random
-                            groupList.Add(item);
+                        bool even = (selectedIds.Count % 2) == 0;
+                        Person newPerson = new Person(generation, nativePopulation[i].ID, nativePopulation[i].Chromosome, even ? FUNCTION_NUMBER.FIRST : FUNCTION_NUMBER.SECOND);
+                        nextPopulation.Add(newPerson);
+                        selectedIds.Add(newPerson.ID);
+                        if (nextPopulation.Count == N)
+                        {
                             break;
-                        case 1: //range
-                            groupList.Add(item);
-                            break;
-                        case 2: //even\odd
-                            bool even = (i % 2) == 0;
-                            if (even)
-                            {
-                                groupListEven.Add(item);
-                            }
-                            else
-                            {
-                                groupList.Add(item);
-                            }
-                            break;
-                    }
-                    i++;
-                }
-            }
-            if (groupList.Count > 0)
-            {
-                workList.Add(groupList);
-            }
-            if (groupListEven.Count > 0)
-            {
-                workList.Add(groupListEven);
-            }
-
-            i = 0;
-            foreach (var item in workList)
-            {
-                if (SelectWay == 1) //best
-                {
-                    item.Sort(new FuncComparer());
-                }
-                for (int j = 0; j < Math.Min(IndividForSelectN, item.Count); j++)
-                {
-                    bool even = (i % 2) == 0;
-                    switch (SelectWay)
-                    {
-                        case 0: //random
-                        case 1: //best
-                            Person newPerson = new Person(generation, item[j].ID, item[j].Chromosome, even ? FUNCTION_NUMBER.FIRST : FUNCTION_NUMBER.SECOND);
-                            nextPopulation.Add(newPerson);
-                            selectedIds.Add(newPerson.ID);
-                            i++;
-                            break;
-                    }
-                    if (nextPopulation.Count == N)
-                    {
-                        break;
+                        }
                     }
                 }
                 if (nextPopulation.Count == N)
@@ -112,7 +50,35 @@ namespace oprCourseSoloviev.PopulationChooseMethods
                     break;
                 }
             }
-            */
+
+            bool changes = false;
+            while (selectedIds.Count < N)
+            {
+                changes = false;
+                foreach (var item in nativePopulation)
+                {
+                    if (!item.isRemoved && !selectedIds.Contains(item.ID))
+                    {
+                        changes = true;
+
+                        bool even = (selectedIds.Count % 2) == 0;
+                        Person newPerson = new Person(generation, item.ID, item.Chromosome, even ? FUNCTION_NUMBER.FIRST : FUNCTION_NUMBER.SECOND);
+                        nextPopulation.Add(newPerson);
+                        selectedIds.Add(newPerson.ID);
+
+                        if (nextPopulation.Count == N)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                if (nextPopulation.Count == N || !changes)
+                {
+                    break;
+                }
+            }
+
             return nextPopulation;
         }
 

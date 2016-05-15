@@ -9,11 +9,14 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
 using NCalc;
+using System.Threading;
 
 namespace oprCourseSoloviev
 {
     public partial class Form1 : Form
     {
+        private static string RESULT_FILE_PATH = System.Environment.CurrentDirectory + "results.txt";
+
         func[] f = new func[2];// = new func();
         int Z = 5;
         int N = 19;//19; //must be odd
@@ -60,7 +63,7 @@ namespace oprCourseSoloviev
             functionControl1.groupBox1.Text = "Function 1 (C# style):";
             functionControl2.groupBox1.Text = "Function 2 (C# style):";
 
-            initForm2();
+            initFormResult();
         }
 
         void update()
@@ -518,44 +521,30 @@ namespace oprCourseSoloviev
                     item.Funcion2Value.ToString(),
                     item.FuncionCommonValue.ToString()});
 
+                var currentRow = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
 
-
-
-                if (item.isRemoved/*x1 > parametersControl1.ParamBoundaries.X1Right || x1 < parametersControl1.ParamBoundaries.X1Left
-                    || x2 > parametersControl1.ParamBoundaries.X2Right || x2 < parametersControl1.ParamBoundaries.X2Left*/)
+                if (item.isRemoved)
                 {
-                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Red;
+                    currentRow.DefaultCellStyle.BackColor = Color.Red;
                 }
 
-                /*switch (item.Type)
-                {
-                    case PersonType.SELECTED:
-                        dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Olive;
-                        break;
-                    case PersonType.CROSSING:
-                        dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Orange;
-                        break;
-                    case PersonType.MUTATION:
-                        dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Violet;
-                        break;
-                }*/
                 if (vega.selectedId.Contains(id))
                 {
-                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Olive;
+                    currentRow.DefaultCellStyle.ForeColor = Color.Olive;
 
-                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[item.FunctionNumber.Equals(FUNCTION_NUMBER.FIRST) ? 5 : 4].Style.ForeColor = Color.Gray;
+                    currentRow.Cells[item.FunctionNumber.Equals(FUNCTION_NUMBER.FIRST) ? 5 : 4].Style.ForeColor = Color.Gray;
                 }
                 else if (vega.crossedId.Contains(id))
                 {
-                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Orange;
+                    currentRow.DefaultCellStyle.ForeColor = Color.Orange;
                 }
                 else if (vega.mutatedId.Contains(id))
                 {
-                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Violet;
+                    currentRow.DefaultCellStyle.ForeColor = Color.Violet;
                 }
                 else
                 {
-                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[item.FunctionNumber.Equals(FUNCTION_NUMBER.FIRST) ? 5 : 4].Style.ForeColor = Color.Gray;
+                    currentRow.Cells[item.FunctionNumber.Equals(FUNCTION_NUMBER.FIRST) ? 5 : 4].Style.ForeColor = Color.Gray;
                 }
 
                 if (!pointsId.Contains(item.ID))
@@ -576,41 +565,33 @@ namespace oprCourseSoloviev
             }
 
             StringBuilder codeBuilder = new StringBuilder();
-            codeBuilder.Append(N);
-            codeBuilder.Append(".");
-            codeBuilder.Append(parametersControl1.comboBoxPopulationCreation.SelectedIndex);
-            codeBuilder.Append(".");
-            codeBuilder.Append(parametersControl1.comboBoxPopulationChooser.SelectedIndex);
-            codeBuilder.Append(".");
-            codeBuilder.Append(parametersControl1.comboBoxCrossingTypeChooser.SelectedIndex);
-            codeBuilder.Append(".");
-            codeBuilder.Append(parametersControl1.CrossingPoint[0]);
-            codeBuilder.Append(".");
-            codeBuilder.Append(parametersControl1.comboBoxMutationType.SelectedIndex);
-            codeBuilder.Append(".");
-            codeBuilder.Append(parametersControl1.Mu);
-            codeBuilder.Append(".");
-            codeBuilder.Append(bestGen);
+            codeBuilder.Append(N).Append(".")
+                .Append(parametersControl1.comboBoxPopulationCreation.SelectedIndex).Append(".")
+                .Append(parametersControl1.comboBoxPopulationChooser.SelectedIndex).Append(".")
+                .Append(parametersControl1.comboBoxCrossingTypeChooser.SelectedIndex).Append(".")
+                .Append(parametersControl1.CrossingPoint[0]).Append(".")
+                .Append(parametersControl1.comboBoxMutationType.SelectedIndex).Append(".")
+                .Append(parametersControl1.Mu).Append(".")
+                .Append(bestGen);
 
-            using(StreamWriter writer = new StreamWriter(System.Environment.CurrentDirectory+"results.txt", true))
+            using (StreamWriter writer = new StreamWriter(RESULT_FILE_PATH, true))
             {
-                writer.WriteLine(parametersControl1.N.ToString()+"%"+
-                    parametersControl1.PopulationCreation.ToString() + "%" +
-                    parametersControl1.PopulationChooser.ToString() + "%" +
-                    parametersControl1.CrossingType.ToString() + "%" +
-                    (parametersControl1.CrossingPoint.Length == 2 ? (parametersControl1.CrossingPoint[0] + ", " + parametersControl1.CrossingPoint[1]) : parametersControl1.CrossingPoint[0].ToString()) + "%" +
-                    parametersControl1.MutationType.ToString() + "%" +
-                    parametersControl1.Mu.ToString() + "%" +
-                    bestGen.ToString() + "%" +
-                    codeBuilder.ToString());
+                StringBuilder lineBuilder = new StringBuilder();
+                lineBuilder.Append(parametersControl1.N).Append("%")
+                    .Append(parametersControl1.PopulationCreation).Append("%")
+                    .Append(parametersControl1.PopulationChooser).Append("%")
+                    .Append(parametersControl1.CrossingType).Append("%")
+                    .Append(parametersControl1.CrossingPoint.Length == 2 ? (parametersControl1.CrossingPoint[0] + ", " + parametersControl1.CrossingPoint[1]) : parametersControl1.CrossingPoint[0].ToString()).Append("%")
+                    .Append(parametersControl1.MutationType).Append("%")
+                    .Append(parametersControl1.Mu).Append("%")
+                    .Append(bestGen).Append("%")
+                    .Append(codeBuilder);
+                writer.WriteLine(lineBuilder);
                 writer.Close();
             }
-
-           
-
         }
 
-        private void initForm2()
+        private void initFormResult()
         {
             formResult = new FormTotalResult();
 
@@ -630,26 +611,17 @@ namespace oprCourseSoloviev
 
         private void button3_Click(object sender, EventArgs e)
         {
-            initForm2();
+            initFormResult();
 
-            using (StreamReader sr = new StreamReader(System.Environment.CurrentDirectory + "results.txt"))
+            char[] splitter = new char[] { '%' };
+
+            using (StreamReader sr = new StreamReader(RESULT_FILE_PATH))
             {
                 while (!sr.EndOfStream)
                 {
-                    string readedLine = sr.ReadLine();
-                    string[] splittedValues = readedLine.Split(new char[] { '%' });
-                    formResult.dataGridView1.Rows.Add(splittedValues);
+                    formResult.dataGridView1.Rows.Add(sr.ReadLine().Split(splitter));
                 }
-                /*formResult.dataGridView1.Rows.Add(new string[] {
-                        parametersControl1.N.ToString(), 
-                        parametersControl1.PopulationCreation.ToString(),
-                        parametersControl1.PopulationChooser.ToString(),
-                        parametersControl1.CrossingType.ToString(),
-                        (parametersControl1.CrossingPoint.Length == 2 ? (parametersControl1.CrossingPoint[0] + ", " + parametersControl1.CrossingPoint[1]) : parametersControl1.CrossingPoint[0].ToString()),
-                        parametersControl1.MutationType.ToString(),
-                        parametersControl1.Mu.ToString(),
-                        bestGen.ToString(),
-                        codeBuilder.ToString()});*/
+                sr.Close();
             }
 
             formResult.Show();
